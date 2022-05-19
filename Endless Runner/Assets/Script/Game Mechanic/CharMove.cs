@@ -12,7 +12,7 @@ public class CharMove : MonoBehaviour
     public AudioSource  aud;
     public Vector3 jump;
     public float jumpForce = 2.0f;
-    public bool isGrounded;
+    public bool isGrounded, died = false;
     PhotonView view;
          
          Rigidbody rb;
@@ -27,7 +27,7 @@ public class CharMove : MonoBehaviour
       void Start()
     {
         view = GetComponent<PhotonView>();
-        //GetComponent<Rigidbody>().velocity = new Vector3(0,0,12);
+       // GetComponent<Rigidbody>().velocity = new Vector3(0,0,12);
         
         anim.Play("m_run");
         
@@ -35,7 +35,7 @@ public class CharMove : MonoBehaviour
         //StartCoroutine(ExampleCoroutine());
 
         rb = GetComponent<Rigidbody>();
-             jump = new Vector3(0.0f, 2.0f, 0.0f);
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
   
@@ -54,9 +54,14 @@ public class CharMove : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(Vector3.forward * 12* Time.deltaTime);
+       
         // if (view.IsMine)
          //{
+
+        if (died == false)
+        {
+             transform.Translate(Vector3.forward * 12* Time.deltaTime);
+        }
             if (Input.GetKey("a"))
             {
             // GetComponent<Rigidbody>().velocity = new Vector3(-1,0,12);
@@ -73,23 +78,46 @@ public class CharMove : MonoBehaviour
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
-            if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
+            // if(Input.GetKeyDown(KeyCode.Space) && isGrounded) 
+            // {
         
-                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
-            }
+            //     rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            //     isGrounded = false;
+
+            //     GetComponent<Rigidbody>().velocity = new Vector3(0, 2, speed);
+                 
+            //    StartCoroutine(stopJump());
+            // }
          //}
+        
+
+        if (died == true)
+        {
+            transform.Translate(Vector3.down * 0* Time.deltaTime);  
+            Debug.Log("died");
+
+            //GetComponent<CharacterController>().enabled = false;
+        }
         
 
         
 
     }
 
+    IEnumerator stopJump()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, -4, speed);
+        yield return new WaitForSeconds(.9f);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, speed);
+        
+    }
+
     IEnumerator StopMove()
     {
         yield return new WaitForSeconds(1);
-        GetComponent<Rigidbody>().velocity = new Vector3(0,0,12);
+        GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+       
     }
 
        void OnCollisionEnter(Collision collision)
@@ -101,6 +129,8 @@ public class CharMove : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
             aud.Play(1);
             death.Play("m_death_A");
+            died = true;
+            //StartCoroutine(StopMove());
             StartCoroutine(ExampleCoroutine());
        
       }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    public Transform building, truck1, truck2, dusbin, powerUP;
-    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn;
-    private int randX,randx2, randx3, randX4;
+    public Transform building, truck1, truck2, dusbin, powerUP, zombie;
+    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn, zombieSpawn;
+    private int randX,randx2, randx3, randX4,randx5;
     int i;
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class GameFlow : MonoBehaviour
        
         StartCoroutine(SpawnBuilding());
         StartCoroutine(SpawnPowerUp());
+        StartCoroutine(SpawnZombie());
 
 
         
@@ -38,11 +39,23 @@ public class GameFlow : MonoBehaviour
          randX4 = Random.Range(-16,-4);
                  powerUpSpawn.y = 2;
                  powerUpSpawn.x = randX4;
-                 //spawn building
                 Instantiate(powerUP, powerUpSpawn, powerUP.rotation);
                 powerUpSpawn.z += 500;
                 StartCoroutine (SpawnPowerUp());
     }
+
+      IEnumerator SpawnZombie()
+    {
+        yield return new WaitForSeconds(5);
+         randx5 = Random.Range(-16,-4);
+                 zombieSpawn.y = 0;
+                 zombieSpawn.x = randx5;
+                Instantiate(zombie, zombieSpawn, zombie.rotation);
+                zombieSpawn.z += 50;
+                StartCoroutine (SpawnZombie());
+    }
+
+    
 
     IEnumerator SpawnBuilding()
     {
