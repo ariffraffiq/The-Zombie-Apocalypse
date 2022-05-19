@@ -4,6 +4,7 @@ using UnityEngine;
 //using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
 
 public class Login : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Login : MonoBehaviour
         else
         {
             PlayerPrefs.SetString("username", userName.text);
+            PhotonNetwork.NickName = userName.text;
             FindObjectOfType<APISystem>().Register(userName.text, userName.text, userName.text, userName.text);
             Debug.Log(userName.text);
             Debug.Log("My name is " + PlayerPrefs.GetString("username"));
