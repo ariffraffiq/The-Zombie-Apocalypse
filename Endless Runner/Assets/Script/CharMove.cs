@@ -27,8 +27,8 @@ public class CharMove : MonoBehaviour
       void Start()
     {
         view = GetComponent<PhotonView>();
-        GetComponent<Rigidbody>().velocity = new Vector3(0,0,12);
-        //transform.Translate(Vector3.forward * 12* Time.deltaTime);
+        //GetComponent<Rigidbody>().velocity = new Vector3(0,0,12);
+        
         anim.Play("m_run");
         
          //Start the coroutine we define below named ExampleCoroutine.
@@ -53,6 +53,8 @@ public class CharMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        transform.Translate(Vector3.forward * 12* Time.deltaTime);
         // if (view.IsMine)
          //{
             if (Input.GetKey("a"))
