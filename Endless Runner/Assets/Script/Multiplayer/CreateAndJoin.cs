@@ -11,11 +11,19 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
     public TMP_InputField  createRoom;
     public TMP_InputField  joinRoom;
     public int playerCount, roomSize;
+    public GameObject mainPanel;
+    public GameObject roomPanel;
+    public Text roomName;
+
+    private void Start()
+    {
+        PhotonNetwork.JoinLobby();
+    }
 
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(createRoom.text);
-        SceneManager.LoadScene("Multiplayer");
+        //SceneManager.LoadScene("Lobby");
        // playerCount++;
         //PlayerCountUpdate();
     }
@@ -27,7 +35,10 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Multiplayer");
+        mainPanel.SetActive(false);
+        roomPanel.SetActive(true);
+        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
+        //PhotonNetwork.LoadLevel("Lobby");
     }
 
     void PlayerCountUpdate()
@@ -37,7 +48,7 @@ public class CreateAndJoin : MonoBehaviourPunCallbacks
 
         if (playerCount == 2)
         {
-            SceneManager.LoadScene("Multiplayer");
+            //SceneManager.LoadScene("Lobby");
         }
     }
 }
