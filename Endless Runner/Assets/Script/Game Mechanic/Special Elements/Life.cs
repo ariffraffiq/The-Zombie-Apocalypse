@@ -7,6 +7,7 @@ public class Life : MonoBehaviour
 {
     public TextMeshProUGUI lifeText;
     public GameObject gameOver,immune,bgrMusic;
+    [SerializeField]
     int life = 3;
     Collider trigger;
     bool died = false;
@@ -21,7 +22,7 @@ public class Life : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        lifeText.text = "x " + life;
         
         if (died == false)
         {
@@ -44,7 +45,6 @@ public class Life : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             life--;
-            lifeText.text = "x " + life;
             died = true;
 
             if (life < 1)
@@ -57,9 +57,17 @@ public class Life : MonoBehaviour
             else
             {
                 StartCoroutine(Respawn());
-            }
+            }  
+        } 
+      }
 
+        void OnTriggerEnter(Collider other) 
+      {
+           if (other.gameObject.tag == "Life")
+        {
             
+            life++; 
+            Debug.Log("Add Life");
         }
       }
 

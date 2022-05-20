@@ -12,8 +12,7 @@ public class Timer : MonoBehaviour
     [SerializeField]
      private float score;
      private int hourCount,h;
-     public GameObject timecount,timeresult,powerUp,PowerUpcountdown,bgrMusic;
-      Collider trigger;
+     public GameObject timecount,timeresult;
      
   
 
@@ -69,15 +68,7 @@ public class Timer : MonoBehaviour
         }
       }
 
-       //Power up trigger
-      void OnTriggerEnter(Collider other) 
-      {
-           if (other.gameObject.tag == "PowerUp")
-        {
-            
-            StartCoroutine(PowerUp());
-        }
-      }
+      
 
       IEnumerator saveScore()
       {
@@ -86,29 +77,11 @@ public class Timer : MonoBehaviour
           Debug.Log("Update player score");
       }
 
-      IEnumerator PowerUp()
-      {
-          trigger.isTrigger = true;
-          powerUp.gameObject.SetActive(true);
-          PowerUpcountdown.gameObject.SetActive(true);
-          bgrMusic.gameObject.SetActive(false);
-
-          yield return new WaitForSeconds(15f);
-          
-          trigger.isTrigger = false;
-          powerUp.gameObject.SetActive(false);
-          PowerUpcountdown.gameObject.SetActive(false);
-          bgrMusic.gameObject.SetActive(true);
-      }
+     
 
        void Start()
     {
-        //Fetch the GameObject's Collider (make sure they have a Collider component)
-        trigger = GetComponent<Collider>();
-        //Here the GameObject's Collider is not a trigger
-        trigger.isTrigger = false;
-        //Output whether the Collider is a trigger type Collider or not
-        Debug.Log("Trigger On : " + trigger.isTrigger);
+      
     }
 
 }

@@ -1394,9 +1394,11 @@ MonoBehaviour:
   truck1: {fileID: 400008, guid: 1989787f5d4f08647a723f7cb7df5f05, type: 3}
   truck2: {fileID: 400008, guid: ca6a542169d8e474aa2c2cb47423839a, type: 3}
   dusbin: {fileID: 400000, guid: 4e3b8318a9112f24d84095e1a4d96ae0, type: 3}
-  powerUP: {fileID: 9103900629657812205, guid: cdd7664f10e41214692ac6e8c07b5095, type: 3}
+  powerUP: {fileID: 391241279609091428, guid: 6c0bb0b255920d245a5a31f5c9868527, type: 3}
   zombie: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
   zombie2: {fileID: 856601670117272814, guid: bdf04773176086b4c9ebb5255eef1ee9, type: 3}
+  life: {fileID: 9103900629657812205, guid: cdd7664f10e41214692ac6e8c07b5095, type: 3}
+  poison: {fileID: 3894834728593187344, guid: 00db94e4430492048a7fc8e2aca808c2, type: 3}
 --- !u!114 &1280261256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,6 +2131,8 @@ GameObject:
   - component: {fileID: 1966923333}
   - component: {fileID: 1966923045}
   - component: {fileID: 1966921856}
+  - component: {fileID: 1966921857}
+  - component: {fileID: 1966921858}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2422,7 +2426,36 @@ MonoBehaviour:
   gameOver: {fileID: 1966921847}
   immune: {fileID: 1966921947}
   bgrMusic: {fileID: 1966921851}
+  life: 3
   run: {fileID: 1966923340}
+--- !u!114 &1966921857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966921840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c3ae8e6ac787647ade6787533d27e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: {fileID: 1966921947}
+  PowerUpcountdown: {fileID: 1966921931}
+  bgrMusic: {fileID: 1966921851}
+  pass: {fileID: 258753480079293290, guid: 00db94e4430492048a7fc8e2aca808c2, type: 3}
+--- !u!114 &1966921858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966921840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22b071c1d3729845ad4711debf4fa6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966921912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,9 +4610,6 @@ MonoBehaviour:
   score: 0
   timecount: {fileID: 1966921855}
   timeresult: {fileID: 1966921847}
-  powerUp: {fileID: 1966921947}
-  PowerUpcountdown: {fileID: 1966921931}
-  bgrMusic: {fileID: 1966921851}
 --- !u!114 &1966923046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4709,6 +4739,8 @@ MonoBehaviour:
   powerUP: {fileID: 9103900629657812205, guid: cdd7664f10e41214692ac6e8c07b5095, type: 3}
   zombie: {fileID: 0}
   zombie2: {fileID: 0}
+  life: {fileID: 0}
+  poison: {fileID: 0}
 --- !u!114 &1966923049
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    public Transform building, truck1, truck2, dusbin, powerUP, zombie, zombie2;
-    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn, zombieSpawn,zombieSpawn2;
-    private int randX,randx2, randx3, randX4,randx5, randX6;
+    public Transform building, truck1, truck2, dusbin, powerUP, zombie, zombie2,life, poison;
+    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn, zombieSpawn,zombieSpawn2, lifeSpawn, poisonSpawn;
+    private int randX,randx2, randx3, randX4,randx5, randX6, randx7, randx8;
     int i;
 
     // Start is called before the first frame update
@@ -19,12 +19,16 @@ public class GameFlow : MonoBehaviour
         powerUpSpawn.z = 80;
         zombieSpawn.z = 50;
         zombieSpawn2.z = 100;
+        lifeSpawn.z = 100;
+        poisonSpawn.z = 50; 
 
        
         StartCoroutine(SpawnBuilding());
         StartCoroutine(SpawnPowerUp());
         StartCoroutine(SpawnZombie());
         StartCoroutine(SpawnZombie2());
+        StartCoroutine(SpawnLife());
+        StartCoroutine(SpawnPoison());
 
 
         
@@ -36,15 +40,38 @@ public class GameFlow : MonoBehaviour
         
     }
 
-    IEnumerator SpawnPowerUp()
+    IEnumerator SpawnPoison()
+    {
+        yield return new WaitForSeconds(1);
+         randx8 = Random.Range(-16,-4);
+                 poisonSpawn.y = 0;
+                 poisonSpawn.x = randx8;
+                Instantiate(poison, poisonSpawn, poison.rotation);
+                poisonSpawn.z += 20;
+                StartCoroutine (SpawnPoison());
+    }
+
+     IEnumerator SpawnPowerUp()
     {
         yield return new WaitForSeconds(1);
          randX4 = Random.Range(-16,-4);
-                 powerUpSpawn.y = 2;
+                 powerUpSpawn.y = 0;
                  powerUpSpawn.x = randX4;
                 Instantiate(powerUP, powerUpSpawn, powerUP.rotation);
                 powerUpSpawn.z += 500;
                 StartCoroutine (SpawnPowerUp());
+    }
+
+
+    IEnumerator SpawnLife()
+    {
+        yield return new WaitForSeconds(1);
+         randx7 = Random.Range(-16,-4);
+                 lifeSpawn.y = 2;
+                 lifeSpawn.x = randx7;
+                Instantiate(life, lifeSpawn, life.rotation);
+                lifeSpawn.z += 300;
+                StartCoroutine (SpawnLife());
     }
 
       IEnumerator SpawnZombie()
@@ -54,7 +81,7 @@ public class GameFlow : MonoBehaviour
                  zombieSpawn.y = 0;
                  zombieSpawn.x = randx5;
                 Instantiate(zombie, zombieSpawn, zombie.rotation);
-                zombieSpawn.z += 30;
+                zombieSpawn.z += 20;
                 StartCoroutine (SpawnZombie());
     }
 
@@ -65,7 +92,7 @@ public class GameFlow : MonoBehaviour
                  zombieSpawn2.y = 0;
                  zombieSpawn2.x = randX6;
                 Instantiate(zombie2, zombieSpawn2, zombie2.rotation);
-                zombieSpawn2.z += 60;
+                zombieSpawn2.z += 50;
                 StartCoroutine (SpawnZombie2());
     }
 
