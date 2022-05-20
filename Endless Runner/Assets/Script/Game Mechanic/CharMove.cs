@@ -60,7 +60,7 @@ public class CharMove : MonoBehaviour
 
         if (died == false)
         {
-             transform.Translate(Vector3.forward * 12* Time.deltaTime);
+             //transform.Translate(Vector3.forward * 12* Time.deltaTime);
         }
             if (Input.GetKey("a"))
             {
@@ -131,7 +131,7 @@ public class CharMove : MonoBehaviour
             death.Play("m_death_A");
             died = true;
             //StartCoroutine(StopMove());
-            StartCoroutine(ExampleCoroutine());
+           // StartCoroutine(ExampleCoroutine());
        
       }
 

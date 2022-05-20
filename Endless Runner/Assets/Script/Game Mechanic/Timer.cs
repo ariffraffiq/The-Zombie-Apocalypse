@@ -42,17 +42,18 @@ public class Timer : MonoBehaviour
          secondsCount += Time.deltaTime;
          score += Time.deltaTime;
          //int score = convert.ToInt32(secondsCount);
-         timerText.text = "TIME :  " + minuteCount +" : "+(int)secondsCount ;
-         if(secondsCount >= 60){
-             minuteCount++;
-             secondsCount = 0;
-         }
+         timerText.text = "Distance :  " +(int)secondsCount + " Meter" ;
+        // timerText.text = "Distance :  " + minuteCount +" : "+(int)secondsCount ;
+        //  if(secondsCount >= 60){
+        //      minuteCount++;
+        //      secondsCount = 0;
+        // }
          
-         else if(minuteCount >= 60)
-         {
-             hourCount++;
-             minuteCount = 0;
-         }    
+        //  else if(minuteCount >= 60)
+        //  {
+        //      hourCount++;
+        //      minuteCount = 0;
+        //  }    
      }
 
       void OnCollisionEnter(Collision collision)
@@ -64,7 +65,7 @@ public class Timer : MonoBehaviour
             //StopCoroutine(timer());
             timecount.gameObject.SetActive(false);
             //Debug.Log("HIT");
-            StartCoroutine(saveScore());
+            //StartCoroutine(saveScore());
         }
       }
 

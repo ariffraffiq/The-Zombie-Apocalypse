@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    public Transform building, truck1, truck2, dusbin, powerUP, zombie;
-    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn, zombieSpawn;
-    private int randX,randx2, randx3, randX4,randx5;
+    public Transform building, truck1, truck2, dusbin, powerUP, zombie, zombie2;
+    private Vector3 nextSpawn, truck1_Spawn, truck2_Spawn, dusbin_Spawn, powerUpSpawn, zombieSpawn,zombieSpawn2;
+    private int randX,randx2, randx3, randX4,randx5, randX6;
     int i;
 
     // Start is called before the first frame update
@@ -17,11 +17,14 @@ public class GameFlow : MonoBehaviour
         truck2_Spawn.z = 60;
         dusbin_Spawn.z = 45;
         powerUpSpawn.z = 80;
+        zombieSpawn.z = 50;
+        zombieSpawn2.z = 100;
 
        
         StartCoroutine(SpawnBuilding());
         StartCoroutine(SpawnPowerUp());
         StartCoroutine(SpawnZombie());
+        StartCoroutine(SpawnZombie2());
 
 
         
@@ -46,13 +49,24 @@ public class GameFlow : MonoBehaviour
 
       IEnumerator SpawnZombie()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
          randx5 = Random.Range(-16,-4);
                  zombieSpawn.y = 0;
                  zombieSpawn.x = randx5;
                 Instantiate(zombie, zombieSpawn, zombie.rotation);
-                zombieSpawn.z += 50;
+                zombieSpawn.z += 30;
                 StartCoroutine (SpawnZombie());
+    }
+
+      IEnumerator SpawnZombie2()
+    {
+        yield return new WaitForSeconds(1);
+         randX6 = Random.Range(-16,-4);
+                 zombieSpawn2.y = 0;
+                 zombieSpawn2.x = randX6;
+                Instantiate(zombie2, zombieSpawn2, zombie2.rotation);
+                zombieSpawn2.z += 60;
+                StartCoroutine (SpawnZombie2());
     }
 
     
