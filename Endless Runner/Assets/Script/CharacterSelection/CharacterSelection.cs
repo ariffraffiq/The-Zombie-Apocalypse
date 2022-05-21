@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CharacterSelection : MonoBehaviour
     public GameObject StartButton;
     public GameObject notAvailableText;
     public GameObject selectedText;
-    public int currentCharacter = 0;
+    public static int currentCharacter = 0;
     public int playerReady = 0;
     public static int ChoosedCharacter;
     public bool[] characterSelected = new bool[4];
@@ -26,7 +27,7 @@ public class CharacterSelection : MonoBehaviour
 
 
     private void Start()
-    {
+    {   
         photonView = GetComponent<PhotonView>();
         for (int i = 0; i < 4; i++)
         {
@@ -95,8 +96,11 @@ public class CharacterSelection : MonoBehaviour
 
     public void StartGame()
     {
+        
         PhotonNetwork.LoadLevel("Multiplayer");
+       
     }
+
     [PunRPC]
     void UpdateCharacterChoice(int index, string nickname)
     {

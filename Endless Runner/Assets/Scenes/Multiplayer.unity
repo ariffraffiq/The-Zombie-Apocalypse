@@ -1056,16 +1056,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179cf4d15d168a64dbd40047a88bd4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player:
-  - {fileID: 3970202325982926990, guid: 4cd9199d5fa66134c965c883c8f7e516, type: 3}
-  - {fileID: 3970202325982926990, guid: 63c029329264ff645a1c56f889d02c50, type: 3}
-  - {fileID: 3970202325982926990, guid: 1ffcc1453a2f954469d74dc430f992a8, type: 3}
-  - {fileID: 3970202325982926990, guid: 613749743bf8a264ab92fe5b496ec68d, type: 3}
+  player1: {fileID: 3970202325982926990, guid: 4cd9199d5fa66134c965c883c8f7e516, type: 3}
+  player2: {fileID: 3970202325982926990, guid: 63c029329264ff645a1c56f889d02c50, type: 3}
+  player3: {fileID: 3970202325982926990, guid: 1ffcc1453a2f954469d74dc430f992a8, type: 3}
+  player4: {fileID: 3970202325982926990, guid: 613749743bf8a264ab92fe5b496ec68d, type: 3}
   spawn:
   - {fileID: 1052436549}
   - {fileID: 1890244911}
   - {fileID: 184130466}
   - {fileID: 440568350}
+  charNum: 0
   minX: 0
   maxX: 0
   minY: 0

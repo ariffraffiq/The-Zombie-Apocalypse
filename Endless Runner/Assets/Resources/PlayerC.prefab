@@ -2687,8 +2687,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  anim: {fileID: 0}
-  death: {fileID: 0}
+  anim: {fileID: 5004134439739934318}
+  death: {fileID: 5004134439739934318}
   timecount: {fileID: 3970202325982926985}
   aud: {fileID: 3970202325982928566}
   jump: {x: 0, y: 0, z: 0}
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   immune: {fileID: 3970202325982926885}
   bgrMusic: {fileID: 3970202325982926981}
   life: 3
-  run: {fileID: 0}
+  run: {fileID: 5004134439739934318}
 --- !u!114 &3970202325982926975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70361,5 +70361,10 @@ PrefabInstance:
 --- !u!4 &5004134439730128936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7447163605590411544, guid: 907fd825e3988774caab4234b943bf44, type: 3}
+  m_PrefabInstance: {fileID: 2462310201765044528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5004134439739934318 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7447163605599512414, guid: 907fd825e3988774caab4234b943bf44, type: 3}
   m_PrefabInstance: {fileID: 2462310201765044528}
   m_PrefabAsset: {fileID: 0}
