@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Life : MonoBehaviour
 {
@@ -86,6 +87,11 @@ public class Life : MonoBehaviour
           
           trigger.isTrigger = false;
           immune.gameObject.SetActive(false);
+      }
+
+      public void End()
+      {
+          SceneManager.LoadScene("MainMenu");
       }
 
 }
