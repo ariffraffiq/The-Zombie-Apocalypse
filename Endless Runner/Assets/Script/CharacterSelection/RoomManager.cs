@@ -15,6 +15,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene=true;
         updatePlayerList();
         RoomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
     }

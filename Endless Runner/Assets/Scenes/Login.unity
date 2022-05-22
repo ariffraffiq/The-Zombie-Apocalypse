@@ -2285,6 +2285,7 @@ MonoBehaviour:
   jump: {x: 0, y: 0, z: 0}
   jumpForce: 2
   isGrounded: 0
+  died: 0
 --- !u!65 &754694046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2827,6 +2828,11 @@ MonoBehaviour:
   truck1: {fileID: 400008, guid: ca6a542169d8e474aa2c2cb47423839a, type: 3}
   truck2: {fileID: 400008, guid: 1989787f5d4f08647a723f7cb7df5f05, type: 3}
   dusbin: {fileID: 400000, guid: 4e3b8318a9112f24d84095e1a4d96ae0, type: 3}
+  powerUP: {fileID: 0}
+  zombie: {fileID: 0}
+  zombie2: {fileID: 0}
+  life: {fileID: 0}
+  poison: {fileID: 0}
 --- !u!114 &853553273
 MonoBehaviour:
   m_ObjectHideFlags: 0

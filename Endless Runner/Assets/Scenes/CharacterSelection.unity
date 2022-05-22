@@ -334,7 +334,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 73897888}
   - component: {fileID: 73897887}
   m_Layer: 5
-  m_Name: playerList
+  m_Name: playerListText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

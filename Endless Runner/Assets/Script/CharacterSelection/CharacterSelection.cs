@@ -13,8 +13,6 @@ public class CharacterSelection : MonoBehaviour
     public GameObject SelectButton;
     public GameObject leftButton;
     public GameObject RightButton;
-    public Transform playerItemParent;
-
     public GameObject StartButton;
     public GameObject notAvailableText;
     public GameObject selectedText;
@@ -96,9 +94,9 @@ public class CharacterSelection : MonoBehaviour
 
     public void StartGame()
     {
-        
+        if(!PhotonNetwork.IsMasterClient)
+            return;
         PhotonNetwork.LoadLevel("Multiplayer");
-       
     }
 
     [PunRPC]

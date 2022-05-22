@@ -26,9 +26,9 @@ public class Immune : MonoBehaviour
         if(speedUp == true)
         {
             Debug.Log("SpeedUp");
-           
+           Debug.Log(Vector3.forward * 10* Time.deltaTime);
             transform.Translate(Vector3.forward * 10* Time.deltaTime);
-           
+           Debug.Log(Vector3.forward * 10* Time.deltaTime);
         }
         
     }
