@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 
 public class NewGameFlow : MonoBehaviourPunCallbacks
@@ -15,13 +16,15 @@ public class NewGameFlow : MonoBehaviourPunCallbacks
     public GameObject gameOverPanel;
     public GameObject ResultItem;
     public Transform ResultListparent;
-    List<string> myPlayer = new List<string>();
+    public Text winnerText;
+    List<ScoreClass> myPlayer = new List<ScoreClass>();
     private ExitGames.Client.Photon.Hashtable setResult = new ExitGames.Client.Photon.Hashtable();
 
 
     // Start is called before the first frame update
     void Start()
     {
+        winnerText.gameObject.SetActive(false);
         nextSpawn.z = 39;
         truck1_Spawn.z = 30;
         truck2_Spawn.z = 60;
@@ -164,39 +167,55 @@ public class NewGameFlow : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void setPlayerResult( string score){
-        myPlayer.Add(score);
-        Debug.Log("count: "+myPlayer.Count);
+    public void setPlayerResult(string name, string score){
+        ScoreClass a = new ScoreClass();
+        a.addplayer(name,score);
+        myPlayer.Add(a);
         DisplayResult();
     }
     public void DisplayResult()
     {
-        //  FindObjectOfType<APISystem>().InsertPlayerActivity(PlayerPrefs.GetString("username"), "Time_TakenV2", "add", distance.ToString("0"));
-        gameOverPanel.gameObject.SetActive(true);
+        // condition to display gameOverPanel to player that had end the game 
+        foreach(ScoreClass _score in myPlayer){
+            if(_score.playername==PhotonNetwork.NickName){
+                gameOverPanel.gameObject.SetActive(true);
+            }        
+        }
+    
+        int index=1;
+        // condition if all player end display the winner else hide the winner text
+        Debug.Log("hihihi");
+        Debug.Log(PhotonNetwork.PlayerList.Length);
+        Debug.Log(myPlayer.Count);
+        if(myPlayer.Count==PhotonNetwork.PlayerList.Length){
+            winnerText.gameObject.SetActive(true);
+            int number = myPlayer.Count-1;
+            winnerText.text="Winner : "+myPlayer[number].playername;
+        }
+
+        // Reload previous listing
         foreach (Transform child in ResultListparent)
         {
             Destroy(child.gameObject);
         }
         foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            Instantiate(ResultItem, ResultListparent).transform.Find("PlayerName").GetComponent<Text>().text = player.NickName;
+        {  
+            ResultItem.transform.Find("PlayerText").GetComponent<Text>().text = "Player "+index;
+            Instantiate(ResultItem, ResultListparent).transform.Find("PlayerName").GetComponent<Text>().text = player.NickName; 
+            index++;       
         }
         foreach(Transform child in ResultListparent){
-            foreach(string _score in myPlayer){
-        
-                child.transform.Find("PlayerResult").GetComponent<Text>().text = _score;
-               
-                //  if(child.transform.Find("PlayerName").GetComponent<Text>().text == _score.playername){
-                //     Debug.Log(_score.playername +"found");
-                //      child.transform.Find("PlayerResult").GetComponent<Text>().text = _score.score;
-                //  }
-                //  else{
-                //      Debug.Log("2");
-                //     child.transform.Find("PlayerResult").GetComponent<Text>().text = "Playing";
-                //  }
-            
+            foreach(ScoreClass _score in myPlayer){
+                // if player name in myplayer list mean he had end and display the score else show playing text
+                 if(child.transform.Find("PlayerName").GetComponent<Text>().text == _score.playername){
+                     child.transform.Find("PlayerResult").GetComponent<Text>().text = _score.score;
+                     break;
+                 }
+                 else{
+                    child.transform.Find("PlayerResult").GetComponent<Text>().text = "Playing";
+                 }
             }
-           
+           index++;
         }
     }
 }

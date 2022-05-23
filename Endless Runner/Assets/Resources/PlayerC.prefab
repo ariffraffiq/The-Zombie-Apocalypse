@@ -344,6 +344,7 @@ MonoBehaviour:
   run: {fileID: 7103295205265347906}
   powerUp: {fileID: 1223085064284834569}
   pass: {fileID: 4631156797382092096, guid: 5577306704340934992058941c987330, type: 3}
+  ResultItem: {fileID: 0}
 --- !u!114 &6368010087895928290
 MonoBehaviour:
   m_ObjectHideFlags: 0

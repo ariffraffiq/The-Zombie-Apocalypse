@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using TMPro;
 
@@ -122,12 +123,10 @@ public class CharacterMove : MonoBehaviourPunCallbacks
             distance = (transform.position.z - checkpoint.transform.position.z);
             distanceText.text = "Distance: " + distance.ToString("0") + " meters";
         }
-
-
     }
 
     void OnCollisionEnter(Collision collision)
-    {
+    {        
         if (pv.IsMine)
         {
             //Check for a match with the specific tag on any GameObject that collides with your GameObject
@@ -140,8 +139,10 @@ public class CharacterMove : MonoBehaviourPunCallbacks
                 GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 mainCamera.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 if (life < 1)
-                {
-                    pv.RPC("onPlayerGameOver", RpcTarget.All, distance.ToString("0"));
+                {       
+                    life=0;      
+                    //FindObjectOfType<APISystem>().InsertPlayerActivity(PlayerPrefs.GetString("username"), "Time_TakenV2", "add", distance.ToString("0"));  
+                    pv.RPC("onPlayerGameOver", RpcTarget.AllBuffered, PhotonNetwork.NickName, distance.ToString("0"));
                 }
                 else
                 {
@@ -149,13 +150,13 @@ public class CharacterMove : MonoBehaviourPunCallbacks
                 }
             }
         }
-
     }
     [PunRPC]
-    void onPlayerGameOver(string score)
+    void onPlayerGameOver(string name, string score)
     {
-        Debug.Log("Run RPC hha");
-        script.setPlayerResult( score);
+        script = GameObject.Find("/Game Manager").GetComponent<NewGameFlow>();
+        Debug.Log("hi");
+        script.setPlayerResult(name, score);
     }
 
     void OnTriggerEnter(Collider other)

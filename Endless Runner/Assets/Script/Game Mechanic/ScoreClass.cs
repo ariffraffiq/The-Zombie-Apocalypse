@@ -7,7 +7,7 @@ public class ScoreClass
     public string playername;
     public string score;
 
-    public ScoreClass(string a, string b){
+    public void addplayer(string a, string b){
         playername =a;
         score = b;
     }
