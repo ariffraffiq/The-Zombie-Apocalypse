@@ -88,7 +88,7 @@ public class NewGameFlow : MonoBehaviourPunCallbacks
         randx5 = Random.Range(-16, -4);
         zombieSpawn.y = 0;
         zombieSpawn.x = randx5;
-    //    PhotonNetwork.Instantiate("TT_demo_zombie", zombieSpawn, zombie.rotation);
+        PhotonNetwork.Instantiate("TT_demo_zombie", zombieSpawn, zombie.rotation);
         zombieSpawn.z += 20;
         StartCoroutine(SpawnZombie());
     }
@@ -99,7 +99,7 @@ public class NewGameFlow : MonoBehaviourPunCallbacks
         randX6 = Random.Range(-16, -4);
         zombieSpawn2.y = 0;
         zombieSpawn2.x = randX6;
-    //    PhotonNetwork.Instantiate("NewZombie", zombieSpawn2, zombie2.rotation);
+        PhotonNetwork.Instantiate("NewZombie", zombieSpawn2, zombie2.rotation);
         zombieSpawn2.z += 50;
         StartCoroutine(SpawnZombie2());
     }

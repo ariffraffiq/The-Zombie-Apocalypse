@@ -1966,7 +1966,7 @@ MonoBehaviour:
   death: {fileID: 519050118914726000}
   aud: {fileID: 1235549972905240629}
   bgrMusic: {fileID: 1235549972905242118}
-  life: 2
+  life: 3
   run: {fileID: 519050118914726000}
   powerUp: {fileID: 1235549972905242278}
   pass: {fileID: 4631156797382092096, guid: 5577306704340934992058941c987330, type: 3}

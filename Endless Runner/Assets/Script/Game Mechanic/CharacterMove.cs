@@ -141,7 +141,7 @@ public class CharacterMove : MonoBehaviourPunCallbacks
                 if (life < 1)
                 {       
                     life=0;      
-                    //FindObjectOfType<APISystem>().InsertPlayerActivity(PlayerPrefs.GetString("username"), "Time_TakenV2", "add", distance.ToString("0"));  
+                    FindObjectOfType<APISystem>().InsertPlayerActivity(PlayerPrefs.GetString("username"), "Time_TakenV2", "add", distance.ToString("0"));  
                     pv.RPC("onPlayerGameOver", RpcTarget.AllBuffered, PhotonNetwork.NickName, distance.ToString("0"));
                 }
                 else
